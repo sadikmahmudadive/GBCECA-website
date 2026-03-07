@@ -195,18 +195,28 @@ const AboutPreview = () => (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         <ScrollReveal variant="fadeLeft">
-          <div className="relative">
-            <div className="rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/5">
-              <img
+          <div className="relative group">
+            <motion.div 
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.4 }}
+              className="rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/5"
+            >
+              <motion.img
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.8 }}
                 src="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=600&h=400&fit=crop"
                 alt="BNCC cadets in formation"
                 className="w-full h-80 md:h-105 object-cover img-cover"
               />
-            </div>
-            <div className="absolute -bottom-6 -right-6 bg-linear-to-br from-primary-600 to-primary-700 rounded-2xl p-6 shadow-2xl hidden md:block ring-1 ring-white/10">
+            </motion.div>
+            <motion.div 
+              animate={{ y: [0, -10, 0] }}
+              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+              className="absolute -bottom-6 -right-6 bg-linear-to-br from-primary-600 to-primary-700 rounded-2xl p-6 shadow-2xl hidden md:block ring-1 ring-white/10"
+            >
               <p className="text-white text-2xl font-bold">40+</p>
               <p className="text-white/70 text-xs font-medium">Years of Service</p>
-            </div>
+            </motion.div>
           </div>
         </ScrollReveal>
 
@@ -289,13 +299,22 @@ const FeaturesSection = () => (
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         {features.map((feature, i) => (
           <ScrollReveal key={i} variant="fadeUp" delay={i * 0.15}>
-            <div className="group bg-white/6 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 hover:border-white/15">
+            <motion.div 
+              whileHover={{ y: -10, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="group bg-white/6 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 hover:border-white/15 cursor-default h-full"
+            >
               <div className="w-14 h-14 rounded-xl bg-accent-400/20 flex items-center justify-center mb-5 group-hover:bg-accent-400/30 transition-colors">
-                <feature.icon className="text-2xl text-accent-400" />
+                <motion.div
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <feature.icon className="text-2xl text-accent-400" />
+                </motion.div>
               </div>
               <h3 className="text-xl font-bold text-white mb-3">{feature.title}</h3>
               <p className="text-gray-300 leading-relaxed">{feature.description}</p>
-            </div>
+            </motion.div>
           </ScrollReveal>
         ))}
       </div>
@@ -314,15 +333,31 @@ const CTASection = () => (
             <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-accent-300/10 rounded-full blur-[100px]" />
           </div>
           <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-5 leading-tight">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-3xl md:text-4xl font-bold text-white mb-5 leading-tight"
+            >
               Are You a Former BNCC Cadet of
               <br />
-              <span className="text-accent-400">Govt. Bangla College?</span>
-            </h2>
-            <p className="text-white/80 text-base md:text-lg max-w-2xl mx-auto mb-8">
+              <motion.span 
+                animate={{ color: ['#60a5fa', '#93c5fd', '#60a5fa'] }}
+                transition={{ duration: 3, repeat: Infinity }}
+                className="text-accent-400"
+              >
+                Govt. Bangla College?
+              </motion.span>
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-white/80 text-base md:text-lg max-w-2xl mx-auto mb-8"
+            >
               Join our brotherhood. Reconnect with your batch mates, participate in events,
               and contribute to our community. Registration is free for all ex-cadets.
-            </p>
+            </motion.p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link to="/login">
                 <motion.div

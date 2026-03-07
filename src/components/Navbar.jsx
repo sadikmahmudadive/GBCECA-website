@@ -44,15 +44,22 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-18">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
-            <div className="w-11 h-11 rounded-xl bg-linear-to-br from-primary-600 to-primary-700 flex items-center justify-center shadow-lg shadow-primary-600/20 group-hover:scale-105 transition-transform">
+            <motion.div 
+              whileHover={{ rotate: 180, scale: 1.1 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="w-11 h-11 rounded-xl bg-linear-to-br from-primary-600 to-primary-700 flex items-center justify-center shadow-lg shadow-primary-600/20 group-hover:shadow-primary-400/50"
+            >
               <FaAnchor className="text-white text-base" />
-            </div>
+            </motion.div>
             <div className="hidden sm:block">
-              <h1 className={`text-lg font-bold tracking-tight transition-colors ${
-                scrolled || !isHome ? 'text-primary-800' : 'text-white'
-              }`}>
+              <motion.h1 
+                whileHover={{ scale: 1.05, originX: 0 }}
+                className={`text-lg font-bold tracking-tight transition-colors ${
+                  scrolled || !isHome ? 'text-primary-800' : 'text-white'
+                }`}
+              >
                 GBCECA
-              </h1>
+              </motion.h1>
               <p className={`text-xs transition-colors ${
                 scrolled || !isHome ? 'text-gray-500' : 'text-white/70'
               }`}>

@@ -71,7 +71,11 @@ const Dashboard = () => {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Header Dashboard Controls */}
-          <div className="flex flex-wrap justify-between items-center mb-8 gap-4">
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex flex-wrap justify-between items-center mb-8 gap-4"
+          >
             <h1 className="text-3xl font-bold text-gray-900">My Profile</h1>
             <div className="flex items-center space-x-3">
               {isAdmin && (
@@ -79,7 +83,9 @@ const Dashboard = () => {
                   to="/admin"
                   className="px-4 py-2 text-sm font-medium bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors flex items-center space-x-2 shadow-sm"
                 >
-                  <FaUserShield />
+                  <motion.div whileHover={{ rotate: 180 }} transition={{ duration: 0.3 }}>
+                    <FaUserShield />
+                  </motion.div>
                   <span className="hidden sm:inline">Admin Panel</span>
                 </Link>
               )}
@@ -90,15 +96,17 @@ const Dashboard = () => {
                 <FaHome />
                 <span className="hidden sm:inline">Home</span>
               </Link>
-              <button
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={logout}
                 className="px-4 py-2 text-sm font-medium bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors flex items-center space-x-2"
               >
                 <FaSignOutAlt />
                 <span className="hidden sm:inline">Logout</span>
-              </button>
+              </motion.button>
             </div>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Left Column: Avatar & Basic Info */}
@@ -110,7 +118,11 @@ const Dashboard = () => {
               <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden relative">
                 <div className="h-24 bg-linear-to-r from-primary-600 to-primary-800"></div>
                 <div className="px-6 pb-6 relative">
-                  <div className="w-24 h-24 rounded-full border-4 border-white bg-white shadow-md mx-auto -mt-12 flex items-center justify-center overflow-hidden relative">
+                  <motion.div 
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="w-24 h-24 rounded-full border-4 border-white bg-white shadow-md mx-auto -mt-12 flex items-center justify-center overflow-hidden relative cursor-pointer"
+                  >
                     {currentUser?.photoURL ? (
                       <img src={currentUser.photoURL} alt="Profile" className="w-full h-full object-cover" />
                     ) : (
@@ -118,7 +130,7 @@ const Dashboard = () => {
                         {getInitials(currentUser?.displayName)}
                       </div>
                     )}
-                  </div>
+                  </motion.div>
                   
                   <div className="text-center mt-4 mb-6">
                     <h2 className="text-xl font-bold text-gray-900">{currentUser?.displayName || 'User'}</h2>

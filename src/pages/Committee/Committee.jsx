@@ -103,15 +103,15 @@ const Committee = () => {
                     </div>
                     <p className="text-gray-600 leading-relaxed mb-5">{member.bio}</p>
                     <div className="flex space-x-2">
-                      <a href="#" className="w-10 h-10 rounded-xl bg-primary-50 flex items-center justify-center text-primary-500 hover:bg-primary-600 hover:text-white transition-all duration-200">
+                      <motion.a whileHover={{ y: -4, scale: 1.1 }} whileTap={{ scale: 0.9 }} href="#" className="w-10 h-10 rounded-xl bg-primary-50 flex items-center justify-center text-primary-500 hover:bg-primary-600 hover:text-white transition-all duration-200">
                         <FaFacebookF size={14} />
-                      </a>
-                      <a href="#" className="w-10 h-10 rounded-xl bg-primary-50 flex items-center justify-center text-primary-500 hover:bg-primary-600 hover:text-white transition-all duration-200">
+                      </motion.a>
+                      <motion.a whileHover={{ y: -4, scale: 1.1 }} whileTap={{ scale: 0.9 }} href="#" className="w-10 h-10 rounded-xl bg-primary-50 flex items-center justify-center text-primary-500 hover:bg-primary-600 hover:text-white transition-all duration-200">
                         <FaEnvelope size={14} />
-                      </a>
-                      <a href="#" className="w-10 h-10 rounded-xl bg-primary-50 flex items-center justify-center text-primary-500 hover:bg-primary-600 hover:text-white transition-all duration-200">
+                      </motion.a>
+                      <motion.a whileHover={{ y: -4, scale: 1.1 }} whileTap={{ scale: 0.9 }} href="#" className="w-10 h-10 rounded-xl bg-primary-50 flex items-center justify-center text-primary-500 hover:bg-primary-600 hover:text-white transition-all duration-200">
                         <FaPhone size={14} />
-                      </a>
+                      </motion.a>
                     </div>
                   </div>
                 </motion.div>
