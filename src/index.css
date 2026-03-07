@@ -1,0 +1,169 @@
+@import "tailwindcss";
+
+@theme {
+  /* Bangladesh Navy — Deep Blue Palette */
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #2563eb;
+  --color-primary-600: #1d4ed8;
+  --color-primary-700: #1e40af;
+  --color-primary-800: #1e3a5f;
+  --color-primary-900: #0c1a2e;
+
+  /* Accent — Sky Blue */
+  --color-accent-50: #f0f9ff;
+  --color-accent-100: #e0f2fe;
+  --color-accent-200: #bae6fd;
+  --color-accent-300: #7dd3fc;
+  --color-accent-400: #38bdf8;
+  --color-accent-500: #0ea5e9;
+  --color-accent-600: #0284c7;
+
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: #0f172a;
+    background-color: #ffffff;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer components {
+  /* Selection highlight */
+  ::selection {
+    background: var(--color-primary-200);
+    color: var(--color-primary-900);
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-primary-300);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary-500);
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .glass-dark {
+    background: rgba(12, 26, 46, 0.94);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--color-primary-500), var(--color-accent-400));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .pattern-bg {
+    background-color: #f8fafc;
+    background-image:
+      radial-gradient(at 20% 50%, rgba(29, 78, 216, 0.04) 0, transparent 50%),
+      radial-gradient(at 80% 50%, rgba(56, 189, 248, 0.04) 0, transparent 50%);
+  }
+
+  /* Smooth card hover shadow */
+  .card-shadow {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
+    transition: box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .card-shadow:hover {
+    box-shadow: 0 25px 50px rgba(12, 26, 46, 0.1), 0 12px 24px rgba(12, 26, 46, 0.08);
+    transform: translateY(-2px);
+  }
+
+  /* Professional button styles */
+  .btn-primary {
+    background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-700));
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .btn-primary:hover {
+    background: linear-gradient(135deg, var(--color-primary-700), var(--color-primary-800));
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(29, 78, 216, 0.25);
+  }
+
+  .btn-accent {
+    background: linear-gradient(135deg, var(--color-accent-500), var(--color-accent-600));
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .btn-accent:hover {
+    background: linear-gradient(135deg, var(--color-accent-600), #0369a1);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(14, 165, 233, 0.25);
+  }
+
+  /* Professional input focus */
+  .input-focus {
+    transition: all 0.2s ease;
+  }
+  .input-focus:focus {
+    border-color: var(--color-primary-500);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+
+  /* Subtle section divider */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(12, 26, 46, 0.08), transparent);
+  }
+
+  /* Image professional treatment */
+  .img-cover {
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Wave divider */
+  .wave-divider {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+  }
+  .wave-divider svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 60px;
+  }
+  @media (min-width: 768px) {
+    .wave-divider svg {
+      height: 80px;
+    }
+  }
+}
