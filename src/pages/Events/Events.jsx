@@ -148,7 +148,7 @@ const Events = () => {
                 >
                   <div className="relative overflow-hidden h-48">
                     <img
-                      src={event.image}
+                      src={event.image || event.imageUrl}
                       alt={event.title}
                       className="w-full h-full object-cover img-cover group-hover:scale-110"
                     />
