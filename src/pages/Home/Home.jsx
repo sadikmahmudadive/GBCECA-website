@@ -226,7 +226,7 @@ const AboutPreview = () => (
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-50 mb-6 leading-tight">
             Forging Leaders Through{' '}
-            <span className="text-primary-600">Discipline & Service</span>
+            <span className="text-primary-600 dark:text-primary-300">Discipline & Service</span>
           </h2>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-5">
             The Govt. Bangla College Ex Cadet Association (GBCECA) is a proud fraternity

@@ -301,7 +301,7 @@ const Admin = () => {
             </button>
             <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100 capitalize">{activeTab.replace('-', ' ')}</h2>
           </div>
-          <Link to="/" className="px-4 py-2 bg-primary-50 text-primary-700 rounded-lg text-sm font-medium hover:bg-primary-100 transition-colors">
+          <Link to="/" className="px-4 py-2 bg-primary-50 text-primary-700 rounded-lg text-sm font-medium hover:bg-primary-100 transition-colors dark:text-primary-200">
             Back to Site
           </Link>
         </header>

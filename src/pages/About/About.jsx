@@ -44,7 +44,7 @@ const About = () => {
                 Bangladesh National Cadet Corps
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-50 mb-5">
-                About <span className="text-primary-600">BNCC</span>
+                About <span className="text-primary-600 dark:text-primary-300">BNCC</span>
               </h2>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
                 Bangladesh National Cadet Corps (BNCC) is a tri-service (Army, Navy, Air Force)

@@ -58,7 +58,7 @@ const HeroBanner = ({ title, subtitle, bgClass = 'bg-primary-800' }) => {
       </div>
 
       {/* Bottom gradient */}
-      <div className="absolute bottom-0 left-0 right-0 h-20 bg-linear-to-t from-white to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-20 bg-linear-to-t from-white dark:from-slate-900 to-transparent" />
     </section>
   );
 };

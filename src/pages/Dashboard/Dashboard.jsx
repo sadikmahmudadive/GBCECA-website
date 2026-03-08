@@ -184,7 +184,7 @@ const Dashboard = () => {
                     {profileImagePreview ? (
                       <img src={profileImagePreview} alt="Profile" className="w-full h-full object-cover" />
                     ) : (
-                      <div className="w-full h-full bg-linear-to-br from-primary-100 to-primary-200 text-primary-700 text-4xl font-bold flex items-center justify-center">
+                      <div className="w-full h-full bg-linear-to-br from-primary-100 to-primary-200 text-primary-700 text-4xl font-bold flex items-center justify-center dark:text-primary-200">
                         {getInitials(currentUser?.displayName)}
                       </div>
                     )}
@@ -201,7 +201,7 @@ const Dashboard = () => {
                     <div className="text-center mt-3">
                       <button 
                         onClick={() => fileInputRef.current?.click()}
-                        className="text-xs font-medium text-primary-600 hover:text-primary-700 bg-primary-50 px-3 py-1.5 rounded-full"
+                        className="text-xs font-medium text-primary-600 hover:text-primary-700 bg-primary-50 px-3 py-1.5 rounded-full dark:text-primary-300"
                       >
                         Change Photo
                       </button>
@@ -217,7 +217,7 @@ const Dashboard = () => {
                   
                   <div className="text-center mt-4 mb-6">
                     <h2 className="text-xl font-bold text-gray-900 dark:text-gray-50">{currentUser?.displayName || 'User'}</h2>
-                    <p className="text-primary-600 text-sm font-medium flex items-center justify-center gap-1 mt-1 capitalize">
+                    <p className="text-primary-600 text-sm font-medium flex items-center justify-center gap-1 mt-1 capitalize dark:text-primary-300">
                       <FaIdBadge className="text-xs" /> {userData?.role || 'Member'}
                     </p>
                   </div>
@@ -281,7 +281,7 @@ const Dashboard = () => {
                   {!isEditing ? (
                     <button 
                       onClick={() => setIsEditing(true)}
-                      className="text-sm flex items-center justify-center gap-2 text-primary-600 hover:text-primary-700 font-semibold px-5 py-2.5 rounded-xl bg-primary-50 hover:bg-primary-100 transition-colors w-full sm:w-auto"
+                      className="text-sm flex items-center justify-center gap-2 text-primary-600 hover:text-primary-700 font-semibold px-5 py-2.5 rounded-xl bg-primary-50 hover:bg-primary-100 transition-colors w-full sm:w-auto dark:text-primary-300"
                     >
                       <FaEdit /> Edit Profile
                     </button>

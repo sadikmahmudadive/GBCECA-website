@@ -218,7 +218,7 @@ const Login = () => {
                 setIsRegister(!isRegister);
                 setForm({ name: '', email: '', password: '' });
               }}
-              className="text-primary-600 font-semibold hover:underline"
+              className="text-primary-600 font-semibold hover:underline dark:text-primary-300"
             >
               {isRegister ? 'Sign In' : 'Register'}
             </button>
