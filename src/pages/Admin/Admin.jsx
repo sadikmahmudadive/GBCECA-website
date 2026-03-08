@@ -154,6 +154,15 @@ const Admin = () => {
     }
   };
 
+  const determineEventCategory = (title, description) => {
+    const text = `${title} ${description}`.toLowerCase();
+    if (text.includes('reunion') || text.includes('gathering')) return 'reunion';
+    if (text.includes('blood') || text.includes('donation') || text.includes('tree') || text.includes('service') || text.includes('camp') || text.includes('charity')) return 'service';
+    if (text.includes('independence') || text.includes('victory') || text.includes('national') || text.includes('parade') || text.includes('martyr')) return 'national';
+    if (text.includes('celebration') || text.includes('foundation') || text.includes('anniversary') || text.includes('festival')) return 'celebration';
+    return 'social'; // Fallback mapping for unassigned conditions
+  };
+
   const handleModalSubmit = async (e) => {
     e.preventDefault();
     if (!formData.title) return toast.error('Title is required');
@@ -199,6 +208,8 @@ const Admin = () => {
          saveData.time = formData.time;
          saveData.location = formData.location;
          saveData.imageUrl = finalImageUrl;
+         // AI / Heuristic Auto-Categorization based on Title and Description
+         saveData.category = determineEventCategory(formData.title, formData.description);
       } else { // gallery
          saveData.category = formData.category;
          saveData.type = formData.type;
