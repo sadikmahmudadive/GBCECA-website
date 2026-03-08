@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { HiMenuAlt3, HiX } from 'react-icons/hi';
+import { HiMenuAlt3, HiX, HiMoon, HiSun } from 'react-icons/hi';
 import { FaAnchor } from 'react-icons/fa';
 import { useAuth } from '../contexts/AuthContext';
+import { useTheme } from '../contexts/ThemeContext';
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -18,6 +19,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { currentUser, logout } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const location = useLocation();
 
   useEffect(() => {
@@ -36,7 +38,7 @@ const Navbar = () => {
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled || !isHome
-          ? 'glass shadow-sm'
+          ? 'glass dark:glass-dark border-b border-gray-200 dark:border-white/10 shadow-sm'
           : 'bg-transparent'
       }`}
     >
@@ -52,16 +54,16 @@ const Navbar = () => {
               <FaAnchor className="text-white text-base" />
             </motion.div>
             <div className="hidden sm:block">
-              <motion.h1 
+              <motion.h1
                 whileHover={{ scale: 1.05, originX: 0 }}
                 className={`text-lg font-bold tracking-tight transition-colors ${
-                  scrolled || !isHome ? 'text-primary-800' : 'text-white'
+                  scrolled || !isHome ? 'text-primary-800 dark:text-white' : 'text-white'
                 }`}
               >
                 GBCECA
               </motion.h1>
               <p className={`text-xs transition-colors ${
-                scrolled || !isHome ? 'text-gray-500' : 'text-white/70'
+                scrolled || !isHome ? 'text-gray-500 dark:text-gray-300' : 'text-white/70'
               }`}>
                 Ex Cadet Association
               </p>
@@ -79,7 +81,7 @@ const Navbar = () => {
                         isActive
                           ? 'bg-primary-600 text-white shadow-md shadow-primary-600/20'
                           : scrolled || !isHome
-                          ? 'text-gray-600 hover:bg-gray-50 hover:text-primary-600'
+                          ? 'text-gray-600 dark:text-gray-200 dark:hover:bg-white/10 hover:bg-gray-50 hover:text-primary-600'
                           : 'text-white/90 hover:bg-white/10 hover:text-white'
                       }`
                     }
@@ -119,17 +121,37 @@ const Navbar = () => {
                 </motion.div>
               </Link>
             )}
+
+            <button
+              onClick={toggleTheme}
+              className={`ml-2 p-2 rounded-lg transition-colors ${
+                scrolled || !isHome ? 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-white/10' : 'text-white hover:bg-white/10'
+              }`}
+              aria-label="Toggle Theme"
+            >
+              {theme === 'dark' ? <HiSun size={20} /> : <HiMoon size={20} />}
+            </button>
           </div>
 
           {/* Mobile toggle */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className={`lg:hidden p-2 rounded-lg transition-colors ${
-              scrolled || !isHome ? 'text-gray-700' : 'text-white'
-            }`}
-          >
-            {isOpen ? <HiX size={24} /> : <HiMenuAlt3 size={24} />}
-          </button>
+          <div className="lg:hidden flex items-center gap-2">
+            <button
+              onClick={toggleTheme}
+              className={`p-2 rounded-lg transition-colors ${
+                scrolled || !isHome ? 'text-gray-700 dark:text-gray-200' : 'text-white'
+              }`}
+            >
+              {theme === 'dark' ? <HiSun size={22} /> : <HiMoon size={22} />}
+            </button>
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className={`p-2 rounded-lg transition-colors ${
+                scrolled || !isHome ? 'text-gray-700 dark:text-gray-200' : 'text-white'
+              }`}
+            >
+              {isOpen ? <HiX size={24} /> : <HiMenuAlt3 size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -140,7 +162,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden glass border-t border-gray-200"
+            className="lg:hidden glass dark:glass-dark border-t border-gray-200 dark:border-white/10"
           >
             <div className="px-4 py-4 space-y-1">
               {navLinks.map((link) => (
@@ -152,7 +174,7 @@ const Navbar = () => {
                     `block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
                       isActive
                         ? 'bg-primary-600 text-white'
-                        : 'text-gray-700 hover:bg-primary-50'
+                        : 'text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-white/10'
                     }`
                   }
                 >

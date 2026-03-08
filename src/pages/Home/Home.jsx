@@ -167,12 +167,12 @@ const StatsSection = () => {
               <motion.div 
                 whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="relative bg-white rounded-2xl p-6 md:p-8 card-shadow text-center border border-gray-100"
+                className="relative bg-white dark:bg-primary-900 rounded-2xl p-6 md:p-8 card-shadow text-center border border-gray-100 dark:border-white/10"
               >
-                <div className="w-14 h-14 rounded-xl bg-linear-to-br from-primary-50 to-primary-100 flex items-center justify-center mx-auto mb-4">
-                  <stat.icon className="text-2xl text-primary-600" />
+                <div className="w-14 h-14 rounded-xl bg-linear-to-br from-primary-50 to-primary-100 dark:from-primary-700 dark:to-primary-800 flex items-center justify-center mx-auto mb-4">
+                  <stat.icon className="text-2xl text-primary-600 dark:text-primary-300" />
                 </div>
-                <div className="text-3xl md:text-4xl font-bold text-primary-900 mb-2">
+                <div className="text-3xl md:text-4xl font-bold text-primary-900 dark:text-white mb-2">
                   {inView ? (
                     <CountUp end={stat.number} duration={2.5} suffix={stat.suffix} />
                   ) : (

@@ -14,22 +14,22 @@ const SectionTitle = ({ subtitle, title, description, light = false, center = tr
           {subtitle}
         </motion.span>
       )}
-      <motion.h2 
+      <motion.h2
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.1 }}
         viewport={{ once: false }}
-        className={`text-3xl md:text-4xl lg:text-[2.75rem] font-bold mb-5 leading-tight ${light ? 'text-white' : 'text-gray-900'}`}
+        className={`text-3xl md:text-4xl lg:text-[2.75rem] font-bold mb-5 leading-tight ${light ? 'text-white' : 'text-gray-900 dark:text-white'}`}
       >
         {title}
       </motion.h2>
       {description && (
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: false }}
-          className={`text-lg leading-relaxed ${light ? 'text-white/80' : 'text-gray-600'}`}
+          className={`text-lg leading-relaxed ${light ? 'text-white/80' : 'text-gray-600 dark:text-gray-300'}`}
         >
           {description}
         </motion.p>
