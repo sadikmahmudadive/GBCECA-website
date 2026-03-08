@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { updateProfile } from 'firebase/auth';
 import { doc, updateDoc } from 'firebase/firestore';
-import { db } from '../../config/firebase';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { db, storage } from '../../config/firebase';
 import { useAuth } from '../../contexts/AuthContext';
 import {
   FaUser,
@@ -18,7 +19,8 @@ import {
   FaTimes,
   FaIdBadge,
   FaPhoneAlt,
-  FaGraduationCap
+  FaGraduationCap,
+  FaCamera
 } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 import PageTransition from '../../components/PageTransition';
@@ -28,6 +30,7 @@ const Dashboard = () => {
   const isAdmin = userData?.role === 'admin';
   const [isEditing, setIsEditing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const fileInputRef = useRef(null);
   
   // Track editable fields
   const [formData, setFormData] = useState({
@@ -35,23 +38,46 @@ const Dashboard = () => {
     phone: userData?.phone || '',
     batch: userData?.batch || '',
   });
+  
+  const [profileImageFile, setProfileImageFile] = useState(null);
+  const [profileImagePreview, setProfileImagePreview] = useState(currentUser?.photoURL || null);
+
+  const handleImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setProfileImageFile(file);
+      setProfileImagePreview(URL.createObjectURL(file));
+    }
+  };
 
   const handleUpdateProfile = async () => {
     setIsSaving(true);
     try {
-      if (formData.displayName !== currentUser.displayName) {
-        await updateProfile(currentUser, { displayName: formData.displayName });
+      let photoURL = currentUser?.photoURL;
+
+      // Ensure profile image gets uploaded if changed
+      if (profileImageFile) {
+        const imageRef = ref(storage, `users/${currentUser.uid}/profile_${Date.now()}`);
+        await uploadBytes(imageRef, profileImageFile);
+        photoURL = await getDownloadURL(imageRef);
+      }
+
+      // Update Auth profile
+      if (formData.displayName !== currentUser.displayName || photoURL !== currentUser.photoURL) {
+        await updateProfile(currentUser, { displayName: formData.displayName, photoURL });
       }
       
       const userRef = doc(db, 'users', currentUser.uid);
       await updateDoc(userRef, {
         displayName: formData.displayName,
         phone: formData.phone,
-        batch: formData.batch
+        batch: formData.batch,
+        photoURL: photoURL
       });
       
       toast.success('Profile updated successfully!');
       setIsEditing(false);
+      setProfileImageFile(null); // Clear selected file after save
       // Optional: Refresh page to get latest AuthContext data or rely on a snapshot listener in AuthContext ideally
     } catch (error) {
       toast.error('Failed to update profile.');
@@ -119,18 +145,43 @@ const Dashboard = () => {
                 <div className="h-24 bg-linear-to-r from-primary-600 to-primary-800"></div>
                 <div className="px-6 pb-6 relative">
                   <motion.div 
-                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileHover={{ scale: 1.05 }}
                     transition={{ type: "spring", stiffness: 300 }}
-                    className="w-24 h-24 rounded-full border-4 border-white bg-white shadow-md mx-auto -mt-12 flex items-center justify-center overflow-hidden relative cursor-pointer"
+                    className="w-28 h-28 rounded-full border-4 border-white bg-white shadow-xl mx-auto -mt-14 flex items-center justify-center overflow-hidden relative group"
                   >
-                    {currentUser?.photoURL ? (
-                      <img src={currentUser.photoURL} alt="Profile" className="w-full h-full object-cover" />
+                    {profileImagePreview ? (
+                      <img src={profileImagePreview} alt="Profile" className="w-full h-full object-cover" />
                     ) : (
-                      <div className="w-full h-full bg-primary-100 text-primary-700 text-3xl font-bold flex items-center justify-center">
+                      <div className="w-full h-full bg-linear-to-br from-primary-100 to-primary-200 text-primary-700 text-4xl font-bold flex items-center justify-center">
                         {getInitials(currentUser?.displayName)}
                       </div>
                     )}
+                    {isEditing && (
+                      <div 
+                        className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer backdrop-blur-sm"
+                        onClick={() => fileInputRef.current?.click()}
+                      >
+                        <FaCamera className="text-white text-2xl" />
+                      </div>
+                    )}
                   </motion.div>
+                  {isEditing && (
+                    <div className="text-center mt-3">
+                      <button 
+                        onClick={() => fileInputRef.current?.click()}
+                        className="text-xs font-medium text-primary-600 hover:text-primary-700 bg-primary-50 px-3 py-1.5 rounded-full"
+                      >
+                        Change Photo
+                      </button>
+                      <input 
+                        type="file" 
+                        ref={fileInputRef} 
+                        onChange={handleImageChange} 
+                        accept="image/*" 
+                        className="hidden" 
+                      />
+                    </div>
+                  )}
                   
                   <div className="text-center mt-4 mb-6">
                     <h2 className="text-xl font-bold text-gray-900">{currentUser?.displayName || 'User'}</h2>
@@ -194,12 +245,12 @@ const Dashboard = () => {
                   {!isEditing ? (
                     <button 
                       onClick={() => setIsEditing(true)}
-                      className="text-sm flex items-center gap-2 text-primary-600 hover:text-primary-700 font-medium px-3 py-1.5 rounded-lg hover:bg-primary-50 transition-colors"
+                      className="text-sm flex items-center justify-center gap-2 text-primary-600 hover:text-primary-700 font-semibold px-5 py-2.5 rounded-xl bg-primary-50 hover:bg-primary-100 transition-colors w-full sm:w-auto"
                     >
                       <FaEdit /> Edit Profile
                     </button>
                   ) : (
-                    <div className="flex gap-2 w-full sm:w-auto">
+                    <div className="flex gap-3 w-full sm:w-auto">
                       <button 
                         onClick={() => {
                           setIsEditing(false);
@@ -208,17 +259,19 @@ const Dashboard = () => {
                             phone: userData?.phone || '', 
                             batch: userData?.batch || '' 
                           });
+                          setProfileImagePreview(currentUser?.photoURL || null);
+                          setProfileImageFile(null);
                         }}
-                        className="flex-1 sm:flex-none justify-center text-sm flex items-center gap-2 text-gray-500 hover:text-gray-700 font-medium px-3 py-1.5 rounded-lg hover:bg-gray-100 transition-colors"
+                        className="flex-1 sm:flex-none justify-center text-sm flex items-center gap-2 text-gray-600 hover:text-gray-800 font-semibold px-5 py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 transition-colors"
                       >
                         <FaTimes /> Cancel
                       </button>
                       <button 
                         onClick={handleUpdateProfile}
                         disabled={isSaving}
-                        className="flex-1 sm:flex-none justify-center text-sm flex items-center gap-2 bg-primary-600 text-white font-medium px-4 py-1.5 rounded-lg hover:bg-primary-700 transition-colors disabled:opacity-50"
+                        className="flex-1 sm:flex-none justify-center text-sm flex items-center gap-2 bg-primary-600 text-white font-semibold px-6 py-2.5 rounded-xl hover:bg-primary-700 transition-all disabled:opacity-50 shadow-md shadow-primary-600/20"
                       >
-                        {isSaving ? 'Saving...' : <><FaCheck /> Save</>}
+                        {isSaving ? 'Saving...' : <><FaCheck /> Save Changes</>}
                       </button>
                     </div>
                   )}
@@ -227,62 +280,62 @@ const Dashboard = () => {
                 <div className="space-y-5">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-1.5">Full Name</label>
                       {isEditing ? (
                         <input
                           type="text"
                           value={formData.displayName}
                           onChange={(e) => setFormData({ ...formData, displayName: e.target.value })}
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                          className="w-full px-4 py-2.5 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all outline-none"
                         />
                       ) : (
-                        <div className="px-4 py-2.5 bg-gray-50 rounded-lg text-gray-800 border border-transparent font-medium">
+                        <div className="px-4 py-2.5 bg-gray-50 rounded-xl text-gray-800 border border-gray-100 font-medium h-[46px] flex items-center">
                           {currentUser?.displayName || 'N/A'}
                         </div>
                       )}
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                      <div className="px-4 py-2.5 bg-gray-100 text-gray-500 rounded-lg border border-transparent cursor-not-allowed">
+                      <label className="block text-sm font-medium text-gray-700 mb-1.5">Email Address</label>
+                      <div className="px-4 py-2.5 bg-gray-100/70 text-gray-500 rounded-xl border border-gray-100 cursor-not-allowed h-[46px] flex items-center">
                         {currentUser?.email}
                       </div>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-4 border-t border-gray-50">
-                     <div className="md:col-span-2 mb-1">
-                        <h4 className="text-md font-semibold text-gray-800 flex items-center gap-2">
-                           <FaGraduationCap className="text-gray-400" /> Association Information
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-8 border-t border-gray-100 mt-8">
+                     <div className="md:col-span-2 mb-2">
+                        <h4 className="text-md font-semibold text-gray-900 flex items-center gap-2">
+                           <FaGraduationCap className="text-primary-500 text-lg" /> Association Details
                         </h4>
                      </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Passout Batch / Year</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-1.5">Passout Batch / Year</label>
                       {isEditing ? (
                         <input
                           type="text"
                           placeholder="e.g. 2015"
                           value={formData.batch}
                           onChange={(e) => setFormData({ ...formData, batch: e.target.value })}
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                          className="w-full px-4 py-2.5 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all outline-none"
                         />
                       ) : (
-                        <div className="px-4 py-2.5 bg-gray-50 rounded-lg text-gray-800 border border-transparent">
+                        <div className="px-4 py-2.5 bg-gray-50 rounded-xl text-gray-800 border border-gray-100 h-[46px] flex items-center">
                           {userData?.batch || <span className="text-gray-400 italic">Not specified</span>}
                         </div>
                       )}
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-1.5">Phone Number</label>
                       {isEditing ? (
                         <input
                           type="tel"
                           placeholder="+880..."
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                          className="w-full px-4 py-2.5 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all outline-none"
                         />
                       ) : (
-                        <div className="px-4 py-2.5 bg-gray-50 rounded-lg text-gray-800 border border-transparent">
+                        <div className="px-4 py-2.5 bg-gray-50 rounded-xl text-gray-800 border border-gray-100 h-[46px] flex items-center">
                           {userData?.phone || <span className="text-gray-400 italic">Not specified</span>}
                         </div>
                       )}
