@@ -78,7 +78,7 @@ const Gallery = () => {
                   className={`px-5 py-2.5 rounded-lg text-sm font-medium capitalize transition-all duration-200 ${
                     filter === cat
                       ? 'bg-primary-600 text-white shadow-md shadow-primary-600/20'
-                      : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
+                      : 'bg-white dark:bg-slate-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-slate-700'
                   }`}
                 >
                   {cat}

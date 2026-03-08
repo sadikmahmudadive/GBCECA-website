@@ -82,7 +82,7 @@ const Committee = () => {
                 <motion.div 
                   whileHover={{ y: -8, scale: 1.02 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                  className="group bg-white rounded-2xl overflow-hidden card-shadow border border-gray-100"
+                  className="group bg-white dark:bg-slate-800 rounded-2xl overflow-hidden card-shadow border border-gray-100 dark:border-slate-700"
                 >
                   <div className="relative h-72 overflow-hidden">
                     <img
@@ -97,11 +97,11 @@ const Committee = () => {
                     </div>
                   </div>
                   <div className="p-7">
-                    <div className="flex items-center space-x-2 text-sm text-gray-500 mb-3">
+                    <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400 mb-3">
                       <FaUserTie className="text-primary-500" />
                       <span>{member.batch}</span>
                     </div>
-                    <p className="text-gray-600 leading-relaxed mb-5">{member.bio}</p>
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-5">{member.bio}</p>
                     <div className="flex space-x-2">
                       <motion.a whileHover={{ y: -4, scale: 1.1 }} whileTap={{ scale: 0.9 }} href="#" className="w-10 h-10 rounded-xl bg-primary-50 flex items-center justify-center text-primary-500 hover:bg-primary-600 hover:text-white transition-all duration-200">
                         <FaFacebookF size={14} />
@@ -122,13 +122,13 @@ const Committee = () => {
       </section>
 
       {/* Become a Member CTA */}
-      <section className="py-16 md:py-24 bg-gray-50 pattern-bg">
+      <section className="py-16 md:py-24 bg-gray-50 dark:bg-slate-900/50 pattern-bg">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <ScrollReveal variant="zoomIn">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-50 mb-4">
               Want to Serve in the Committee?
             </h2>
-            <p className="text-gray-600 text-base mb-8 max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-300 text-base mb-8 max-w-2xl mx-auto">
               Elections for the executive committee are held every two years. Active members
               in good standing are eligible to participate and run for positions.
             </p>

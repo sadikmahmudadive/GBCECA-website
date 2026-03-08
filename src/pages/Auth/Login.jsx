@@ -99,7 +99,7 @@ const Login = () => {
       </div>
 
       {/* Right Side — Form */}
-      <div className="flex-1 flex items-center justify-center p-6 sm:p-12 bg-gray-50">
+      <div className="flex-1 flex items-center justify-center p-6 sm:p-12 bg-gray-50 dark:bg-slate-900/50">
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -110,13 +110,13 @@ const Login = () => {
             <div className="w-16 h-16 rounded-full bg-primary-600 flex items-center justify-center mx-auto mb-4">
               <FaAnchor className="text-white text-2xl" />
             </div>
-            <h1 className="text-2xl font-bold text-gray-900">GBCECA</h1>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-50">GBCECA</h1>
           </div>
 
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-50 mb-2">
             {isRegister ? 'Create Account' : 'Welcome Back'}
           </h2>
-          <p className="text-gray-500 mb-8">
+          <p className="text-gray-500 dark:text-gray-400 mb-8">
             {isRegister
               ? 'Join the ex-cadet brotherhood today.'
               : 'Sign in to access your member dashboard.'}
@@ -125,7 +125,7 @@ const Login = () => {
           <form onSubmit={handleSubmit} className="space-y-4">
             {isRegister && (
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">Full Name</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1.5">Full Name</label>
                 <div className="relative">
                   <FaUser className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
                   <input
@@ -134,7 +134,7 @@ const Login = () => {
                     value={form.name}
                     onChange={handleChange}
                     placeholder="Enter your full name"
-                    className="w-full pl-11 pr-4 py-3.5 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition-all text-gray-900"
+                    className="w-full pl-11 pr-4 py-3.5 rounded-xl border border-gray-200 dark:border-slate-700 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition-all text-gray-900 dark:text-gray-50"
                     required
                   />
                 </div>
@@ -142,7 +142,7 @@ const Login = () => {
             )}
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Email Address</label>
               <div className="relative">
                 <FaEnvelope className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
                 <input
@@ -151,14 +151,14 @@ const Login = () => {
                   value={form.email}
                   onChange={handleChange}
                   placeholder="your.email@example.com"
-                  className="w-full pl-11 pr-4 py-3.5 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition-all text-gray-900"
+                  className="w-full pl-11 pr-4 py-3.5 rounded-xl border border-gray-200 dark:border-slate-700 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition-all text-gray-900 dark:text-gray-50"
                   required
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Password</label>
               <div className="relative">
                 <FaLock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
                 <input
@@ -167,13 +167,13 @@ const Login = () => {
                   value={form.password}
                   onChange={handleChange}
                   placeholder="Enter your password"
-                  className="w-full pl-11 pr-12 py-3.5 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition-all text-gray-900"
+                  className="w-full pl-11 pr-12 py-3.5 rounded-xl border border-gray-200 dark:border-slate-700 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition-all text-gray-900 dark:text-gray-50"
                   required
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-gray-300"
                 >
                   {showPassword ? <FaEyeSlash className="text-sm" /> : <FaEye className="text-sm" />}
                 </button>
@@ -193,10 +193,10 @@ const Login = () => {
 
           <div className="relative my-8">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-200"></div>
+              <div className="w-full border-t border-gray-200 dark:border-slate-700"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-gray-50 text-gray-500">Or continue with</span>
+              <span className="px-4 bg-gray-50 dark:bg-slate-900/50 text-gray-500 dark:text-gray-400">Or continue with</span>
             </div>
           </div>
 
@@ -205,13 +205,13 @@ const Login = () => {
             whileTap={{ scale: 0.99 }}
             onClick={handleGoogleLogin}
             disabled={loading}
-            className="w-full py-3.5 px-4 border border-gray-300 rounded-xl font-semibold text-gray-700 flex items-center justify-center space-x-3 hover:border-gray-400 transition-all bg-white shadow-sm"
+            className="w-full py-3.5 px-4 border border-gray-300 dark:border-slate-600 rounded-xl font-semibold text-gray-700 dark:text-gray-200 flex items-center justify-center space-x-3 hover:border-gray-400 transition-all bg-white dark:bg-slate-800 shadow-sm"
           >
             <FaGoogle className="text-red-500 text-lg" />
             <span>Google</span>
           </motion.button>
 
-          <p className="text-center text-sm text-gray-500 mt-8">
+          <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-8">
             {isRegister ? 'Already have an account?' : "Don't have an account?"}{' '}
             <button
               onClick={() => {

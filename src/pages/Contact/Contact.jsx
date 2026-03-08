@@ -69,13 +69,13 @@ const Contact = () => {
             <div className="lg:col-span-1 space-y-4">
               {contactInfo.map((item, i) => (
                 <ScrollReveal key={i} variant="fadeLeft" delay={i * 0.1}>
-                  <div className="flex items-start space-x-4 bg-white rounded-2xl p-6 card-shadow border border-gray-100">
+                  <div className="flex items-start space-x-4 bg-white dark:bg-slate-800 rounded-2xl p-6 card-shadow border border-gray-100 dark:border-slate-700">
                     <div className="w-12 h-12 rounded-xl bg-linear-to-br from-primary-600 to-primary-700 flex items-center justify-center shrink-0 shadow-lg shadow-primary-600/20">
                       <item.icon className="text-white" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-0.5">{item.title}</h4>
-                      <p className="text-gray-600 text-sm">{item.detail}</p>
+                      <h4 className="font-semibold text-gray-900 dark:text-gray-50 mb-0.5">{item.title}</h4>
+                      <p className="text-gray-600 dark:text-gray-300 text-sm">{item.detail}</p>
                     </div>
                   </div>
                 </ScrollReveal>
@@ -101,12 +101,12 @@ const Contact = () => {
             {/* Contact Form */}
             <div className="lg:col-span-2">
               <ScrollReveal variant="fadeRight">
-                <div className="bg-white rounded-2xl p-10 md:p-12 card-shadow border border-gray-100">
-                  <h3 className="text-xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
+                <div className="bg-white dark:bg-slate-800 rounded-2xl p-10 md:p-12 card-shadow border border-gray-100 dark:border-slate-700">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-50 mb-6">Send Us a Message</h3>
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="grid md:grid-cols-2 gap-5">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1.5">
                           Full Name <span className="text-red-500">*</span>
                         </label>
                         <input
@@ -115,12 +115,12 @@ const Contact = () => {
                           value={form.name}
                           onChange={handleChange}
                           placeholder="Your full name"
-                          className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition-all text-gray-900"
+                          className="w-full px-4 py-3.5 rounded-xl border border-gray-200 dark:border-slate-700 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition-all text-gray-900 dark:text-gray-50"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                           Email Address <span className="text-red-500">*</span>
                         </label>
                         <input
@@ -129,24 +129,24 @@ const Contact = () => {
                           value={form.email}
                           onChange={handleChange}
                           placeholder="your.email@example.com"
-                          className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition-all text-gray-900"
+                          className="w-full px-4 py-3.5 rounded-xl border border-gray-200 dark:border-slate-700 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition-all text-gray-900 dark:text-gray-50"
                           required
                         />
                       </div>
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Subject</label>
                       <input
                         type="text"
                         name="subject"
                         value={form.subject}
                         onChange={handleChange}
                         placeholder="What's this about?"
-                        className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition-all text-gray-900"
+                        className="w-full px-4 py-3.5 rounded-xl border border-gray-200 dark:border-slate-700 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition-all text-gray-900 dark:text-gray-50"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                         Message <span className="text-red-500">*</span>
                       </label>
                       <textarea
@@ -155,7 +155,7 @@ const Contact = () => {
                         onChange={handleChange}
                         rows={5}
                         placeholder="Write your message here..."
-                        className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition-all resize-none text-gray-900"
+                        className="w-full px-4 py-3.5 rounded-xl border border-gray-200 dark:border-slate-700 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition-all resize-none text-gray-900 dark:text-gray-50"
                         required
                       />
                     </div>

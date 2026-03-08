@@ -81,7 +81,7 @@ const Navbar = () => {
                         isActive
                           ? 'bg-primary-600 text-white shadow-md shadow-primary-600/20'
                           : scrolled || !isHome
-                          ? 'text-gray-600 dark:text-gray-200 dark:hover:bg-white/10 hover:bg-gray-50 hover:text-primary-600'
+                          ? 'text-gray-600 dark:text-gray-200 dark:hover:bg-white/10 hover:bg-gray-50 dark:bg-slate-900/50 hover:text-primary-600'
                           : 'text-white/90 hover:bg-white/10 hover:text-white'
                       }`
                     }
@@ -125,7 +125,7 @@ const Navbar = () => {
             <button
               onClick={toggleTheme}
               className={`ml-2 p-2 rounded-lg transition-colors ${
-                scrolled || !isHome ? 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-white/10' : 'text-white hover:bg-white/10'
+                scrolled || !isHome ? 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:bg-slate-800/80 dark:hover:bg-white/10' : 'text-white hover:bg-white/10'
               }`}
               aria-label="Toggle Theme"
             >

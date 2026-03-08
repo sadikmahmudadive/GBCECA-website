@@ -43,21 +43,21 @@ const About = () => {
               <span className="inline-block text-sm font-semibold tracking-[0.2em] uppercase text-accent-500 mb-3">
                 Bangladesh National Cadet Corps
               </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-5">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-50 mb-5">
                 About <span className="text-primary-600">BNCC</span>
               </h2>
-              <p className="text-gray-600 leading-relaxed mb-4">
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
                 Bangladesh National Cadet Corps (BNCC) is a tri-service (Army, Navy, Air Force)
                 para-military youth organization of Bangladesh. It operates under the Ministry of
                 Defence and enrolls students from universities and colleges across the country.
               </p>
-              <p className="text-gray-600 leading-relaxed mb-4">
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
                 BNCC aims to develop character, comradeship, discipline, a secular outlook,
                 the spirit of adventure, and ideals of selfless service among young citizens.
                 Cadets receive military training, participate in national events, and contribute
                 to disaster management and social welfare.
               </p>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 The organization plays a vital role in building patriotism and leadership qualities
                 among the youth of Bangladesh, creating a reserve force ready to serve the nation
                 in times of need.
@@ -68,7 +68,7 @@ const About = () => {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-16 md:py-24 bg-gray-50 pattern-bg">
+      <section className="py-16 md:py-24 bg-gray-50 dark:bg-slate-900/50 pattern-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <SectionTitle
@@ -83,13 +83,13 @@ const About = () => {
               <motion.div 
                 whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                className="bg-white rounded-2xl p-10 card-shadow border border-gray-100 h-full"
+                className="bg-white dark:bg-slate-800 rounded-2xl p-10 card-shadow border border-gray-100 dark:border-slate-700 h-full"
               >
                 <div className="w-14 h-14 rounded-xl bg-linear-to-br from-primary-600 to-primary-700 flex items-center justify-center mb-6 shadow-lg shadow-primary-600/20">
                   <FaBullseye className="text-white text-xl" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Our Mission</h3>
-                <ul className="space-y-3 text-gray-600 text-sm">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-50 mb-4">Our Mission</h3>
+                <ul className="space-y-3 text-gray-600 dark:text-gray-300 text-sm">
                   <li className="flex items-start space-x-2.5">
                     <FaStar className="text-accent-400 mt-0.5 shrink-0 text-xs" />
                     <span>Unite all ex-cadets of Govt. Bangla College BNCC platoon under one banner</span>
@@ -114,13 +114,13 @@ const About = () => {
               <motion.div 
                 whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                className="bg-white rounded-2xl p-10 card-shadow border border-gray-100 h-full"
+                className="bg-white dark:bg-slate-800 rounded-2xl p-10 card-shadow border border-gray-100 dark:border-slate-700 h-full"
               >
                 <div className="w-14 h-14 rounded-xl bg-linear-to-br from-accent-500 to-accent-600 flex items-center justify-center mb-6 shadow-lg shadow-accent-500/20">
                   <FaEye className="text-white text-xl" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Our Vision</h3>
-                <ul className="space-y-3 text-gray-600">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-50 mb-4">Our Vision</h3>
+                <ul className="space-y-3 text-gray-600 dark:text-gray-300">
                   <li className="flex items-start space-x-2.5">
                     <FaStar className="text-accent-400 mt-1 shrink-0 text-xs" />
                     <span>Become the most active and impactful ex-cadet association in Bangladesh</span>
@@ -164,10 +164,10 @@ const About = () => {
                 <ScrollReveal key={i} variant={i % 2 === 0 ? 'fadeLeft' : 'fadeRight'} delay={i * 0.15}>
                   <div className={`flex flex-col md:flex-row items-center gap-5 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
                     <div className={`flex-1 ${i % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
-                      <div className="bg-white rounded-2xl p-7 card-shadow border border-gray-100">
+                      <div className="bg-white dark:bg-slate-800 rounded-2xl p-7 card-shadow border border-gray-100 dark:border-slate-700">
                         <span className="inline-block text-xs font-bold text-accent-500 uppercase tracking-wider mb-2">{item.year}</span>
-                        <h3 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h3>
-                        <p className="text-gray-600">{item.desc}</p>
+                        <h3 className="text-lg font-bold text-gray-900 dark:text-gray-50 mb-3">{item.title}</h3>
+                        <p className="text-gray-600 dark:text-gray-300">{item.desc}</p>
                       </div>
                     </div>
                     <div className="w-12 h-12 rounded-full bg-linear-to-br from-primary-600 to-primary-700 flex items-center justify-center shrink-0 z-10 shadow-lg ring-4 ring-white">

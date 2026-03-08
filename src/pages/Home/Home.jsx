@@ -179,7 +179,7 @@ const StatsSection = () => {
                     '0'
                   )}
                 </div>
-                <p className="text-sm text-gray-600 font-medium">{stat.label}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-300 font-medium">{stat.label}</p>
               </motion.div>
             </ScrollReveal>
           ))}
@@ -224,16 +224,16 @@ const AboutPreview = () => (
           <span className="inline-block text-sm font-semibold tracking-widest uppercase text-accent-500 mb-3">
             Who We Are
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-50 mb-6 leading-tight">
             Forging Leaders Through{' '}
             <span className="text-primary-600">Discipline & Service</span>
           </h2>
-          <p className="text-gray-600 leading-relaxed mb-5">
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-5">
             The Govt. Bangla College Ex Cadet Association (GBCECA) is a proud fraternity
             of former BNCC cadets from Govt. Bangla College, Mirpur, Dhaka. We carry forward
             the legacy of discipline, leadership, and patriotism instilled during our cadet days.
           </p>
-          <p className="text-gray-600 leading-relaxed mb-8">
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
             Bangladesh National Cadet Corps (BNCC) is a para-military youth organization
             that shapes young minds into responsible citizens and future leaders of Bangladesh.
             Our association keeps that spirit alive through community service, social events,

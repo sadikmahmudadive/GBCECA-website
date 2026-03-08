@@ -253,7 +253,7 @@ const Admin = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-gray-50 dark:bg-slate-900/50 flex">
       {/* Sidebar */}
       <motion.aside
         initial={false}
@@ -294,12 +294,12 @@ const Admin = () => {
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col min-w-0 h-screen overflow-y-auto">
-        <header className="bg-white items-center h-16 px-4 md:px-8 border-b border-gray-200 flex justify-between shrink-0 sticky top-0 z-40 shadow-sm">
+        <header className="bg-white dark:bg-slate-800 items-center h-16 px-4 md:px-8 border-b border-gray-200 dark:border-slate-700 flex justify-between shrink-0 sticky top-0 z-40 shadow-sm">
           <div className="flex items-center">
-            <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="p-2 mr-4 text-gray-600 hover:bg-gray-100 rounded-lg">
+            <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="p-2 mr-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:bg-slate-800/80 rounded-lg">
               <FaBars />
             </button>
-            <h2 className="text-xl font-semibold text-gray-800 capitalize">{activeTab.replace('-', ' ')}</h2>
+            <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100 capitalize">{activeTab.replace('-', ' ')}</h2>
           </div>
           <Link to="/" className="px-4 py-2 bg-primary-50 text-primary-700 rounded-lg text-sm font-medium hover:bg-primary-100 transition-colors">
             Back to Site
@@ -330,10 +330,10 @@ const Admin = () => {
                 )}
 
                 {activeTab === 'users' && (
-                  <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                  <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700 overflow-hidden">
                     <div className="overflow-x-auto">
                       <table className="w-full text-left">
-                        <thead className="bg-gray-50 border-b border-gray-100 text-sm text-gray-600">
+                        <thead className="bg-gray-50 dark:bg-slate-900/50 border-b border-gray-100 dark:border-slate-700 text-sm text-gray-600 dark:text-gray-300">
                           <tr>
                             <th className="p-4 font-medium">Name</th>
                             <th className="p-4 font-medium">Email</th>
@@ -344,13 +344,13 @@ const Admin = () => {
                         <tbody className="divide-y divide-gray-50">
                           {data.users.map(user => (
                             <tr key={user.id} className="hover:bg-gray-50/50">
-                              <td className="p-4 font-medium text-gray-900">{user.name || user.displayName}</td>
-                              <td className="p-4 text-gray-500">{user.email}</td>
+                              <td className="p-4 font-medium text-gray-900 dark:text-gray-50">{user.name || user.displayName}</td>
+                              <td className="p-4 text-gray-500 dark:text-gray-400">{user.email}</td>
                               <td className="p-4">
                                 <select 
                                   value={user.role || 'user'} 
                                   onChange={(e) => handleUpdateRole(user.id, e.target.value)}
-                                  className="text-sm border border-gray-300 rounded-lg px-2 py-1 bg-white focus:outline-none focus:border-primary-500"
+                                  className="text-sm border border-gray-300 dark:border-slate-600 rounded-lg px-2 py-1 bg-white dark:bg-slate-800 focus:outline-none focus:border-primary-500"
                                 >
                                   <option value="user">User</option>
                                   <option value="admin">Admin</option>
@@ -364,7 +364,7 @@ const Admin = () => {
                             </tr>
                           ))}
                           {data.users.length === 0 && (
-                            <tr><td colSpan="4" className="p-8 text-center text-gray-500">No users found.</td></tr>
+                            <tr><td colSpan="4" className="p-8 text-center text-gray-500 dark:text-gray-400">No users found.</td></tr>
                           )}
                         </tbody>
                       </table>
@@ -375,10 +375,10 @@ const Admin = () => {
                 {activeTab === 'messages' && (
                   <div className="space-y-4">
                     {data.messages.map(msg => (
-                      <div key={msg.id} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col sm:flex-row justify-between gap-4">
+                      <div key={msg.id} className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700 flex flex-col sm:flex-row justify-between gap-4">
                         <div>
-                          <h4 className="font-semibold text-gray-900">{msg.name} <span className="text-gray-400 font-normal text-sm ml-2">{msg.email}</span></h4>
-                          <p className="text-gray-700 mt-2">{msg.message}</p>
+                          <h4 className="font-semibold text-gray-900 dark:text-gray-50">{msg.name} <span className="text-gray-400 font-normal text-sm ml-2">{msg.email}</span></h4>
+                          <p className="text-gray-700 dark:text-gray-200 mt-2">{msg.message}</p>
                           <p className="text-xs text-gray-400 mt-3">{msg.createdAt?.toDate ? new Date(msg.createdAt.toDate()).toLocaleString() : 'No date'}</p>
                         </div>
                         <button onClick={() => handleDelete('messages', msg.id)} className="shrink-0 h-10 w-10 flex items-center justify-center text-red-500 hover:bg-red-50 rounded-lg transition-colors">
@@ -387,17 +387,17 @@ const Admin = () => {
                       </div>
                     ))}
                     {data.messages.length === 0 && (
-                      <div className="bg-white p-8 rounded-xl shadow-sm text-center text-gray-500">No messages found.</div>
+                      <div className="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-sm text-center text-gray-500 dark:text-gray-400">No messages found.</div>
                     )}
                   </div>
                 )}
 
                 {(activeTab === 'events' || activeTab === 'gallery') && (
                   <div className="space-y-6">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white p-6 rounded-xl shadow-sm border border-gray-100 gap-4">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700 gap-4">
                       <div>
-                        <h3 className="text-xl font-bold text-gray-900 capitalize">{activeTab}</h3>
-                        <p className="text-gray-500 text-sm">Create and manage {activeTab}.</p>
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-gray-50 capitalize">{activeTab}</h3>
+                        <p className="text-gray-500 dark:text-gray-400 text-sm">Create and manage {activeTab}.</p>
                       </div>
                       <button 
                         onClick={() => openModal(activeTab)}
@@ -409,8 +409,8 @@ const Admin = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                        {data[activeTab].map(item => (
-                          <div key={item.id} className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 group flex flex-col">
-                             <div className="aspect-video bg-gray-100 relative overflow-hidden shrink-0">
+                          <div key={item.id} className="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm border border-gray-100 dark:border-slate-700 group flex flex-col">
+                             <div className="aspect-video bg-gray-100 dark:bg-slate-800/80 relative overflow-hidden shrink-0">
                                 {(item.imageUrl || item.url) ? (
                                    <img src={item.imageUrl || item.url} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                 ) : (
@@ -428,14 +428,14 @@ const Admin = () => {
                                     <FaTrash size={12} />
                                   </button>
                                 </div>
-                                <h4 className="font-bold text-gray-900 pr-16 line-clamp-1 mb-2">{item.title || item.name || 'Untitled'}</h4>
+                                <h4 className="font-bold text-gray-900 dark:text-gray-50 pr-16 line-clamp-1 mb-2">{item.title || item.name || 'Untitled'}</h4>
                                 {activeTab === 'events' ? (
-                                   <div className="text-sm text-gray-500 space-y-1.5 mt-auto">
+                                   <div className="text-sm text-gray-500 dark:text-gray-400 space-y-1.5 mt-auto">
                                       <p className="flex items-center gap-2"><FaCalendarAlt className="text-primary-500 shrink-0"/> <span className="truncate">{item.date || 'No date'} {item.time ? `- ${item.time}` : ''}</span></p>
                                    </div>
                                 ) : (
                                    <div className="mt-auto">
-                                     <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-md text-xs font-semibold uppercase tracking-wider">{item.category || 'general'}</span>
+                                     <span className="px-3 py-1 bg-gray-100 dark:bg-slate-800/80 text-gray-600 dark:text-gray-300 rounded-md text-xs font-semibold uppercase tracking-wider">{item.category || 'general'}</span>
                                    </div>
                                 )}
                              </div>
@@ -443,7 +443,7 @@ const Admin = () => {
                        ))}
                     </div>
                     {data[activeTab].length === 0 && (
-                      <div className="text-center py-16 bg-white rounded-xl shadow-sm border border-gray-100 text-gray-500 flex flex-col items-center">
+                      <div className="text-center py-16 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700 text-gray-500 dark:text-gray-400 flex flex-col items-center">
                         <FaImages className="text-4xl text-gray-300 mb-3" />
                         <p>No items found. Click 'Add New' to create one.</p>
                       </div>
@@ -469,13 +469,13 @@ const Admin = () => {
               initial={{ scale: 0.95, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 20 }}
-              className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden my-auto"
+              className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden my-auto"
             >
-              <div className="flex justify-between items-center p-6 border-b border-gray-100 bg-gray-50/50">
-                <h3 className="text-xl font-bold text-gray-900 capitalize">
+              <div className="flex justify-between items-center p-6 border-b border-gray-100 dark:border-slate-700 bg-gray-50/50">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-50 capitalize">
                   {editingItem ? `Edit ${modalType.slice(0,-1)}` : `New ${modalType.slice(0,-1)}`}
                 </h3>
-                <button onClick={closeModal} className="text-gray-400 hover:text-gray-600 p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                <button onClick={closeModal} className="text-gray-400 hover:text-gray-600 dark:text-gray-300 p-2 rounded-lg hover:bg-gray-100 dark:bg-slate-800/80 transition-colors">
                   <FaTimes size={20} />
                 </button>
               </div>
@@ -483,13 +483,13 @@ const Admin = () => {
               <form onSubmit={handleModalSubmit} className="p-6">
                 <div className="space-y-5">
                   <div>
-                    <label className="block text-sm font-bold text-gray-700 mb-1.5">Title</label>
+                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-200 mb-1.5">Title</label>
                     <input
                       type="text"
                       required
                       value={formData.title}
                       onChange={(e) => setFormData({...formData, title: e.target.value})}
-                      className="w-full px-4 py-2.5 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all"
+                      className="w-full px-4 py-2.5 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all"
                       placeholder={`Enter ${modalType.slice(0,-1)} title`}
                     />
                   </div>
@@ -498,41 +498,41 @@ const Admin = () => {
                     <>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
-                          <label className="block text-sm font-bold text-gray-700 mb-1.5">Date</label>
+                          <label className="block text-sm font-bold text-gray-700 dark:text-gray-200 mb-1.5">Date</label>
                           <input
                             type="date"
                             value={formData.date}
                             onChange={(e) => setFormData({...formData, date: e.target.value})}
-                            className="w-full px-4 py-2.5 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 outline-none"
+                            className="w-full px-4 py-2.5 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 outline-none"
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-bold text-gray-700 mb-1.5">Time</label>
+                          <label className="block text-sm font-bold text-gray-700 dark:text-gray-200 mb-1.5">Time</label>
                           <input
                             type="time"
                             value={formData.time}
                             onChange={(e) => setFormData({...formData, time: e.target.value})}
-                            className="w-full px-4 py-2.5 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 outline-none"
+                            className="w-full px-4 py-2.5 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 outline-none"
                           />
                         </div>
                       </div>
                       <div>
-                        <label className="block text-sm font-bold text-gray-700 mb-1.5">Location</label>
+                        <label className="block text-sm font-bold text-gray-700 dark:text-gray-200 mb-1.5">Location</label>
                         <input
                           type="text"
                           value={formData.location}
                           onChange={(e) => setFormData({...formData, location: e.target.value})}
-                          className="w-full px-4 py-2.5 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 outline-none"
+                          className="w-full px-4 py-2.5 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 outline-none"
                           placeholder="Event location"
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-bold text-gray-700 mb-1.5">Description</label>
+                        <label className="block text-sm font-bold text-gray-700 dark:text-gray-200 mb-1.5">Description</label>
                         <textarea
                           rows="3"
                           value={formData.description}
                           onChange={(e) => setFormData({...formData, description: e.target.value})}
-                          className="w-full px-4 py-2.5 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 outline-none resize-none"
+                          className="w-full px-4 py-2.5 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 outline-none resize-none"
                           placeholder="Event description..."
                         ></textarea>
                       </div>
@@ -541,11 +541,11 @@ const Admin = () => {
 
                   {modalType === 'gallery' && (
                     <div>
-                      <label className="block text-sm font-bold text-gray-700 mb-1.5">Category</label>
+                      <label className="block text-sm font-bold text-gray-700 dark:text-gray-200 mb-1.5">Category</label>
                       <select
                         value={formData.category}
                         onChange={(e) => setFormData({...formData, category: e.target.value})}
-                        className="w-full px-4 py-2.5 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 outline-none"
+                        className="w-full px-4 py-2.5 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 outline-none"
                       >
                         <option value="events">Events</option>
                         <option value="campus">Campus</option>
@@ -556,10 +556,10 @@ const Admin = () => {
                   )}
 
                   <div>
-                    <label className="block text-sm font-bold text-gray-700 mb-1.5">Image</label>
+                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-200 mb-1.5">Image</label>
                     <div 
                       onClick={() => fileInputRef.current?.click()}
-                      className="w-full h-48 border-2 border-dashed border-gray-300 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:bg-gray-50 hover:border-primary-500 transition-colors relative overflow-hidden group"
+                      className="w-full h-48 border-2 border-dashed border-gray-300 dark:border-slate-600 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:bg-gray-50 dark:bg-slate-900/50 hover:border-primary-500 transition-colors relative overflow-hidden group"
                     >
                       {imagePreview ? (
                         <>
@@ -569,7 +569,7 @@ const Admin = () => {
                           </div>
                         </>
                       ) : (
-                        <div className="text-center text-gray-500">
+                        <div className="text-center text-gray-500 dark:text-gray-400">
                           <FaImages className="text-3xl mx-auto mb-2 text-gray-400" />
                           <p className="text-sm font-medium">Click to upload image</p>
                           <p className="text-xs text-gray-400 mt-1">PNG, JPG up to 5MB</p>
@@ -586,11 +586,11 @@ const Admin = () => {
                   </div>
                 </div>
 
-                <div className="mt-8 flex justify-end gap-3 pt-6 border-t border-gray-100">
+                <div className="mt-8 flex justify-end gap-3 pt-6 border-t border-gray-100 dark:border-slate-700">
                   <button
                     type="button"
                     onClick={closeModal}
-                    className="px-6 py-2.5 text-sm font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl transition-colors"
+                    className="px-6 py-2.5 text-sm font-semibold text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-slate-800/80 hover:bg-gray-200 dark:bg-slate-700 rounded-xl transition-colors"
                   >
                     Cancel
                   </button>
@@ -614,13 +614,13 @@ const Admin = () => {
 };
 
 const StatCard = ({ title, value, icon, color }) => (
-  <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-center space-x-4">
+  <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700 flex items-center space-x-4">
     <div className={`w-14 h-14 rounded-xl ${color} text-white flex items-center justify-center text-2xl shadow-sm`}>
       {icon}
     </div>
     <div>
-      <p className="text-gray-500 text-sm font-medium">{title}</p>
-      <h3 className="text-3xl font-bold text-gray-900">{value}</h3>
+      <p className="text-gray-500 dark:text-gray-400 text-sm font-medium">{title}</p>
+      <h3 className="text-3xl font-bold text-gray-900 dark:text-gray-50">{value}</h3>
     </div>
   </div>
 );

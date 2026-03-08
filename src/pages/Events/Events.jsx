@@ -123,7 +123,7 @@ const Events = () => {
                   className={`px-5 py-2.5 rounded-lg text-sm font-medium capitalize transition-colors duration-200 ${
                     filter === cat
                       ? 'bg-primary-600 text-white shadow-md shadow-primary-600/20 border-transparent'
-                      : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
+                      : 'bg-white dark:bg-slate-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-slate-700'
                   }`}
                 >
                   {cat}
@@ -144,7 +144,7 @@ const Events = () => {
                   exit={{ opacity: 0, y: -20 }}
                   whileHover={{ y: -8, scale: 1.02 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                  className="group bg-white rounded-2xl overflow-hidden card-shadow border border-gray-100"
+                  className="group bg-white dark:bg-slate-800 rounded-2xl overflow-hidden card-shadow border border-gray-100 dark:border-slate-700"
                 >
                   <div className="relative overflow-hidden h-48">
                     <img
@@ -160,11 +160,11 @@ const Events = () => {
                     </div>
                   </div>
                   <div className="p-7">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-gray-50 mb-3 group-hover:text-primary-600 transition-colors">
                       {event.title}
                     </h3>
-                    <p className="text-gray-600 mb-5 line-clamp-2">{event.description}</p>
-                    <div className="space-y-2.5 text-sm text-gray-500">
+                    <p className="text-gray-600 dark:text-gray-300 mb-5 line-clamp-2">{event.description}</p>
+                    <div className="space-y-2.5 text-sm text-gray-500 dark:text-gray-400">
                       <div className="flex items-center space-x-2">
                         <FaCalendarAlt className="text-primary-500 text-xs" />
                         <span>{new Date(event.date).toLocaleDateString('en-US', { dateStyle: 'long' })}</span>
