@@ -1,16 +1,41 @@
-# React + Vite
+# GBCECA Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern web application built with React and Vite.
 
-Currently, two official plugins are available:
+## Technology Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Frontend Framework & Core
+* **React** (v19) - Core UI library
+* **JavaScript/JSX** - Primary programming language
 
-## React Compiler
+### Build Tool & Development
+* **Vite** (v7) - Fast development server and production bundler
+* **ESLint** (v9) - Code linting to maintain code quality
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Routing & State Management
+* **React Router DOM** (v7) - Application routing and navigation
+* **React Context API** - Used for global state management
 
-## Expanding the ESLint configuration
+### Styling & UI
+* **Tailwind CSS** (v4) - Utility-first CSS framework for styling
+* **React Icons** - Vector icons library
+* **React Hot Toast** - Toast notifications
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Animations & Effects
+* **Framer Motion** - Production-ready animation library
+* **React CountUp** - Counting animations
+* **React Intersection Observer** - Viewport scroll tracking
+
+### Backend, Services & Integrations
+* **Firebase** (v12) - Backend-as-a-Service
+* **Cloudinary** - Image/Media management
+
+### Deployment
+* **Vercel** - Hosting and deployment platform
+
+## Getting Started
+
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Run the development server: `npm run dev`
+
